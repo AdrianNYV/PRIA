@@ -11,18 +11,18 @@ public abstract class Unit
         this.atack=atack;
     }
 
-    public Hit(Unit atacante, Unit defensor){
+    public void Hit(Unit atacante, Unit defensor){
         int newLife= defensor.getVida()- atacante.getAtaque();
         setVida(newLife);
     }
 
-    public getAtaque(){
+    public int getAtaque(){
         return atack;
     }
-    public getVida(){
+    public int getVida(){
         return life;
     }
-    public setVida(int newLife){
+    public void setVida(int newLife){
         this.life=newLife;
     }
 
