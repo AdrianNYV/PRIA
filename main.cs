@@ -18,7 +18,7 @@ public class Programa{
         Azul.Add(new Aldeano());
         Azul.Add(new Guerrero());
         Azul.Add(new Arquero());
-        while(/*Aqui se comprobaria si algun equipo ha ganado, comprobando si alguna unidad tiene mas de 0 de vida*/){
+        while(/*Aqui se comprobaria si algun equipo ha ganado, comprobando si alguna unidad tiene mas de 0 de vida*/ true){
             //Se elige aleatoriamente quien empieza primero Rojo=0, Azul=1
             int turno =rand.Next(2);
             if(turno==0){
