@@ -7,7 +7,16 @@ using System.Text;
 public class Programa{
 
     public static void Main(){
-       
+        List<Unit> Rojo = new List<Unit>();
+        List<Unit> Azul = new List<Unit>();
+        Rojo.Add(new Aldeano());
+        Rojo.Add(new Aldeano());
+        Rojo.Add(new Guerrero());
+        Rojo.Add(new Arquero());
+        Azul.Add(new Aldeano());
+        Azul.Add(new Aldeano());
+        Azul.Add(new Guerrero());
+        Azul.Add(new Arquero());
     }
     public abstract class Unit
     {
