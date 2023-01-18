@@ -7,15 +7,15 @@ using System.Text;
 public class Programa{
 
     public static void Main(){
-        Console.WriteLine("ZAWARDO");
+       
     }
     public abstract class Unit
     {
         private int life=20;
-        private int atack=0;
+        private int attack=0;
 
-        public Unit (int atack){
-            this.atack=atack;
+        public Unit (int attack){
+            this.attack=attack;
         }
 
         public void Hit(Unit defensor){
@@ -24,7 +24,7 @@ public class Programa{
         }
 
         public int getAtaque(){
-            return atack;
+            return attack;
         }
         public int getVida(){
             return life;
