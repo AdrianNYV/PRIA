@@ -1,3 +1,9 @@
+//Authors:
+//    18/01/23
+//    Adrian Nicolas
+//    David Corbelle
+//    David Vidal
+
 using System.Collections;
 using System.Collections.Generic;
 using System;
