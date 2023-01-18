@@ -19,17 +19,17 @@ public class Programa{
         }
 
         public void Hit(Unit defensor){
-            int newLife= defensor.getVida()- this.getAtaque();
-            defensor.setVida(newLife);
+            int newLife= defensor.getLife()- this.getAttack();
+            defensor.setLife(newLife);
         }
 
-        public int getAtaque(){
+        public int getAttack(){
             return attack;
         }
-        public int getVida(){
+        public int getLife(){
             return life;
         }
-        public void setVida(int newLife){
+        public void setLife(int newLife){
             this.life=newLife;
         }
 
