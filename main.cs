@@ -21,22 +21,16 @@ public class Programa{
         while(true)/*Aqui se comprobaria si algun equipo ha ganado, comprobando si alguna unidad tiene mas de 0 de vida*/
         {
             //Se elige aleatoriamente quien empieza primero Rojo=0, Azul=1
-            if(rand.Next(2)==0)//Aqui solo entraria si empieza el rojo
-            {
-            // Ataca rojo
-            Turno(Rojo, Azul);
-            }else{	
-           // Ataca Azul
-            Turno(Azul, Rojo);
-            }
-          
+            string turno=rand.Next(2)==0 ? Turno(Rojo, Azul) : Turno(Azul, Rojo);
+            Console.WriteLine(turno);
             break;//Break temporal ya que no tenemos la condicion de terminar batalla
         }
 
-        void Turno(List<Unit> atacante, List<Unit> defensor){
+        string Turno(List<Unit> atacante, List<Unit> defensor){
             // Aqui Se elegiria al azar una unidad que ataca y la unidad objetivo
             // Si la unidad que ataca esta muerta se terminaria el turno
             // Si la unidad que que es atacada esta muerta se eligiria otra unidad
+            return "Atacante x ataca a defensor y";
         }
         
     }
