@@ -24,17 +24,17 @@ public class Programa{
             int turno =rand.Next(2);
             if(turno==0)//Aqui solo entraria si empieza el rojo
             {
-            // Empieza rojo
-                Turno(Rojo, Azul);
+            // Ataca rojo
+            Turno(Rojo, Azul);
             }else{	
-           // Empieza Azul
+           // Ataca Azul
             Turno(Azul, Rojo);
             }
           
             break;//Break temporal ya que no tenemos la condicion de terminar batalla
         }
 
-        void Turno(List<Unit> primerEquipo, List<Unit> segundoEquipo){
+        void Turno(List<Unit> atacante, List<Unit> defensor){
             // Aqui Se elegiria al azar una unidad que ataca y la unidad objetivo
             // Si la unidad que ataca esta muerta se terminaria el turno
             // Si la unidad que que es atacada esta muerta se eligiria otra unidad
