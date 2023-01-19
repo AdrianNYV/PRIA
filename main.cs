@@ -21,8 +21,7 @@ public class Programa{
         while(true)/*Aqui se comprobaria si algun equipo ha ganado, comprobando si alguna unidad tiene mas de 0 de vida*/
         {}
             //Se elige aleatoriamente quien empieza primero Rojo=0, Azul=1
-            int turno =rand.Next(2);
-            if(turno==0)//Aqui solo entraria si empieza el rojo
+            if(rand.Next(2)==0)//Aqui solo entraria si empieza el rojo
             {
             // Ataca rojo
             Turno(Rojo, Azul);
