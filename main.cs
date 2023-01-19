@@ -80,6 +80,11 @@ public class Programa{
         public Aldeano(String team): base(0){
             base.setTeam(team);
         }
+
+        public string getClass()
+        {
+            return "Aldeano";
+        }
         
     }
 
@@ -88,6 +93,11 @@ public class Programa{
         public Guerrero(String team): base(10){
             base.setTeam(team);
         }
+
+        public string getClass()
+        {
+            return "Guerrero";
+        }
         
     }
 
@@ -95,6 +105,11 @@ public class Programa{
     {
         public Arquero(String team): base(5){
             base.setTeam(team);
+        }
+
+        public string getClass()
+        {
+            return "Arquero";
         }
         
     }
