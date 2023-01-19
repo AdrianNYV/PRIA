@@ -16,14 +16,14 @@ public class Programa{
         var rand = new Random();
         List<Unit> Rojo = new List<Unit>();
         List<Unit> Azul = new List<Unit>();
-        Rojo.Add(new Aldeano());
-        Rojo.Add(new Aldeano());
-        Rojo.Add(new Guerrero());
-        Rojo.Add(new Arquero());
-        Azul.Add(new Aldeano());
-        Azul.Add(new Aldeano());
-        Azul.Add(new Guerrero());
-        Azul.Add(new Arquero());
+        Rojo.Add(new Aldeano("Rojo"));
+        Rojo.Add(new Aldeano("Rojo"));
+        Rojo.Add(new Guerrero("Rojo"));
+        Rojo.Add(new Arquero("Rojo"));
+        Azul.Add(new Aldeano("Azul"));
+        Azul.Add(new Aldeano("Azul"));
+        Azul.Add(new Guerrero("Azul"));
+        Azul.Add(new Arquero("Azul"));
         while(true)/*Aqui se comprobaria si algun equipo ha ganado, comprobando si alguna unidad tiene mas de 0 de vida*/
         {
             //Se elige aleatoriamente quien empieza primero Rojo=0, Azul=1
@@ -42,6 +42,7 @@ public class Programa{
     }
     public abstract class Unit
     {
+        private string team;
         private int life=20;
         private int attack=0;
 
@@ -54,6 +55,10 @@ public class Programa{
             defensor.setLife(newLife);
         }
 
+        public string getTeam(){
+            return team;
+        }
+
         public int getAttack(){
             return attack;
         }
@@ -64,23 +69,33 @@ public class Programa{
             this.life=newLife;
         }
 
+        public void setTeam(string team){
+            this.team = team;
+        }
+
     }
 
     public class Aldeano : Unit
     {
-        public Aldeano(): base(0){}
+        public Aldeano(String team): base(0){
+            base.setTeam(team);
+        }
         
     }
 
     public class Guerrero: Unit
     {
-        public Guerrero(): base(10){}
+        public Guerrero(String team): base(10){
+            base.setTeam(team);
+        }
         
     }
 
     public class Arquero: Unit
     {
-        public Arquero(): base(5){}
+        public Arquero(String team): base(5){
+            base.setTeam(team);
+        }
         
     }
 }
