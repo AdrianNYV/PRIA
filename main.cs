@@ -31,7 +31,7 @@ public class Programa{
             Turno(Azul, Rojo);
             }
           
-            break;
+            break;//Break temporal ya que no tenemos la condicion de terminar batalla
         }
 
         void Turno(List<Unit> primerEquipo, List<Unit> segundoEquipo){
