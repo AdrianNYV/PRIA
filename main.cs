@@ -13,6 +13,7 @@ using System.Text;
 public class Programa{
 
     public static void Main(){
+        var rand = new Random();
         List<Unit> Rojo = new List<Unit>();
         List<Unit> Azul = new List<Unit>();
         Rojo.Add(new Aldeano());
@@ -23,6 +24,21 @@ public class Programa{
         Azul.Add(new Aldeano());
         Azul.Add(new Guerrero());
         Azul.Add(new Arquero());
+        while(true)/*Aqui se comprobaria si algun equipo ha ganado, comprobando si alguna unidad tiene mas de 0 de vida*/
+        {
+            //Se elige aleatoriamente quien empieza primero Rojo=0, Azul=1
+            string turno=rand.Next(2)==0 ? Turno(Rojo, Azul) : Turno(Azul, Rojo);
+            Console.WriteLine(turno);
+            break;//Break temporal ya que no tenemos la condicion de terminar batalla
+        }
+
+        string Turno(List<Unit> atacante, List<Unit> defensor){
+            // Aqui Se elegiria al azar una unidad que ataca y la unidad objetivo
+            // Si la unidad que ataca esta muerta se terminaria el turno
+            // Si la unidad que que es atacada esta muerta se eligiria otra unidad
+            return "Atacante x ataca a defensor y";
+        }
+        
     }
     public abstract class Unit
     {
