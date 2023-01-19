@@ -52,7 +52,7 @@ public class Programa{
             int unidadDefensora= rand.Next(defensoresVivos.Count);
             defensoresVivos[unidadDefensora].Hit(atacante[unidadAtacante]);
             //Pendiente cambiar la estructura de la Unit para que se le asigne el equipo en el constructor
-            return "Atacante del equipo ¿? y hace "+atacante[unidadAtacante].getAttack()+" de daño  a defensor del equipo ¿? que queda con "+defensoresVivos[unidadDefensora].getLife()+" de vida";
+            return "Atacante del equipo ¿? y reduce la vida del defensor en  "+atacante[unidadAtacante].getAttack()+" de vida y el defensor del equipo ¿? se queda con "+defensoresVivos[unidadDefensora].getLife()+" de vida";
         }
         bool checkAlive(){
             bool rojoVivo = false;
