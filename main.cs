@@ -18,23 +18,23 @@ public class Programa{
         Azul.Add(new Aldeano());
         Azul.Add(new Guerrero());
         Azul.Add(new Arquero());
-        while(/*Aqui se comprobaria si algun equipo ha ganado, comprobando si alguna unidad tiene mas de 0 de vida*/ true){
+        while(true)/*Aqui se comprobaria si algun equipo ha ganado, comprobando si alguna unidad tiene mas de 0 de vida*/
+        {}
             //Se elige aleatoriamente quien empieza primero Rojo=0, Azul=1
             int turno =rand.Next(2);
-            if(turno==0){
-                // Turno equipo Rojo
-                Turno();
-            }	
-            // Turno equipo Azul
-            Turno();
-            if(turno==1){
-                // Turno equipo Rojo
-                Turno();
+            if(turno==0)//Aqui solo entraria si empieza el rojo
+            {
+            // Empieza rojo
+                Turno(Rojo, Azul);
+            }else{	
+           // Empieza Azul
+            Turno(Azul, Rojo);
             }
+          
             break;
         }
 
-        void Turno(){
+        void Turno(List<Unit> primerEquipo, List<Unit> segundoEquipo){
             // Aqui Se elegiria al azar una unidad que ataca y la unidad objetivo
             // Si la unidad que ataca esta muerta se terminaria el turno
             // Si la unidad que que es atacada esta muerta se eligiria otra unidad
