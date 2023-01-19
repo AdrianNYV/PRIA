@@ -24,12 +24,12 @@ public class Programa{
         Azul.Add(new Aldeano());
         Azul.Add(new Guerrero());
         Azul.Add(new Arquero());
-        while(true)/*Aqui se comprobaria si algun equipo ha ganado, comprobando si alguna unidad tiene mas de 0 de vida*/
+        while(checkAlive())
         {
+            // En el while se comprueba si uno de los equipos tiene a todos muertos
             //Se elige aleatoriamente quien empieza primero Rojo=0, Azul=1
             string turno=rand.Next(2)==0 ? Turno(Rojo, Azul) : Turno(Azul, Rojo);
             Console.WriteLine(turno);
-            break;//Break temporal ya que no tenemos la condicion de terminar batalla
         }
 
         string Turno(List<Unit> atacante, List<Unit> defensor){
@@ -53,6 +53,25 @@ public class Programa{
             defensoresVivos[unidadDefensora].Hit(atacante[unidadAtacante]);
             //Pendiente cambiar la estructura de la Unit para que se le asigne el equipo en el constructor
             return "Atacante del equipo ¿? y hace "+atacante[unidadAtacante].getAttack()+" de daño  a defensor del equipo ¿? que queda con "+defensoresVivos[unidadDefensora].getLife()+" de vida";
+        }
+        bool checkAlive(){
+            bool rojoVivo = false;
+            bool azulVivo = false;
+            foreach (var u in Rojo)
+            {
+                if(u.getLife()>0){
+                    rojoVivo=true;
+                    break;
+                }
+            }
+            foreach (var u in Azul)
+            {
+                 if(u.getLife()>0){
+                    azulVivo=true;
+                    break;
+                }
+            }
+            return rojoVivo && azulVivo;
         }
         
     }
