@@ -42,7 +42,7 @@ public class Programa{
     }
     public abstract class Unit
     {
-        private string team;
+        protected string team;
         private int life=20;
         private int attack=0;
 
@@ -68,17 +68,12 @@ public class Programa{
         public void setLife(int newLife){
             this.life=newLife;
         }
-
-        public void setTeam(string team){
-            this.team = team;
-        }
-
     }
 
     public class Aldeano : Unit
     {
         public Aldeano(String team): base(0){
-            base.setTeam(team);
+            base.team = team;
         }
 
         public string getClass()
@@ -91,7 +86,7 @@ public class Programa{
     public class Guerrero: Unit
     {
         public Guerrero(String team): base(10){
-            base.setTeam(team);
+            base.team = team;
         }
 
         public string getClass()
@@ -104,7 +99,7 @@ public class Programa{
     public class Arquero: Unit
     {
         public Arquero(String team): base(5){
-            base.setTeam(team);
+            base.team = team;
         }
 
         public string getClass()
