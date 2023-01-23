@@ -14,6 +14,7 @@ public class Programa{
 
     public static void Main(){
         var rand = new Random();
+        string winner="";
         List<Unit> Rojo = new List<Unit>();
         List<Unit> Azul = new List<Unit>();
         Rojo.Add(new Aldeano("Rojo"));
@@ -24,52 +25,54 @@ public class Programa{
         Azul.Add(new Aldeano("Azul"));
         Azul.Add(new Guerrero("Azul"));
         Azul.Add(new Arquero("Azul"));
+        List<Unit> AzulLose= new List<Unit>();
+        foreach(Unit i in Azul){
+        AzulLose.Add(i);
+        }
+        List<Unit> RojoLose= new List<Unit>();
+        foreach(Unit i in Rojo){
+        RojoLose.Add(i);
+        }
         while(checkAlive())
         {
             // En el while se comprueba si uno de los equipos tiene a todos muertos
             //Se elige aleatoriamente quien empieza primero Rojo=0, Azul=1
-            string turno=rand.Next(2)==0 ? Turno(Rojo, Azul) : Turno(Azul, Rojo);
+            string turno=rand.Next(2)==0 ? Turno(Rojo, AzulLose) : Turno(Azul, RojoLose);
             Console.WriteLine(turno);
         }
+         Console.WriteLine("El ganador es el equipo "+winner);
 
         string Turno(List<Unit> atacante, List<Unit> defensor){
             //Seleccionamos la unidad atacante
             int unidadAtacante= rand.Next(atacante.Count);
             if(atacante[unidadAtacante].getLife()<=0){
-                return "Lo siento los muertos no pueden atacar, no tienes un nigromante";
+                return "Lo siento los muertos no pueden atacar, no tienes un nigromante\n";
             }
             // Aqui generamos una lista de los defensores vivos porque siempre va a atacar a un vivo
             // La solucion del nombre del equipo
-            List<Unit> defensoresVivos = new List<Unit>();
-            foreach (Unit u in defensor)
-            {
-                if(u.getLife()>0)
-                {
-                    defensoresVivos.Add(u);
-                }
-            }
+           
             // Seleccionamos la unidad que va a ser atacada
-            int unidadDefensora= rand.Next(defensoresVivos.Count);
-            defensoresVivos[unidadDefensora].Hit(atacante[unidadAtacante]);
+            int unidadDefensora= rand.Next(defensor.Count);
+            defensor[unidadDefensora].Hit(atacante[unidadAtacante]);
+            Unit defensorTmp= defensor[unidadDefensora];
+            if(defensor[unidadDefensora].getLife()<=0){
+                defensor.Remove(defensor[unidadDefensora]);
+            }
             //Pendiente cambiar la estructura de la Unit para que se le asigne el equipo en el constructor
-            return "Atacante del equipo ¿? y reduce la vida del defensor en  "+atacante[unidadAtacante].getAttack()+" de vida y el defensor del equipo ¿? se queda con "+defensoresVivos[unidadDefensora].getLife()+" de vida";
+            return  atacante[unidadAtacante].getClass()+ " del equipo "+atacante[unidadAtacante].getTeam()+" reduce la vida del "+defensorTmp.getClass()+" del equipo "+defensorTmp.getTeam()+" en "+atacante[unidadAtacante].getAttack()+" y este se queda con "+defensorTmp.getLife()+" de vida\n";
         }
         bool checkAlive(){
             bool rojoVivo = false;
             bool azulVivo = false;
-            foreach (var u in Rojo)
-            {
-                if(u.getLife()>0){
-                    rojoVivo=true;
-                    break;
-                }
+            if(RojoLose.Count>0){
+                rojoVivo=true;
+            }else if(RojoLose.Count ==0){
+                winner= "Azul";
             }
-            foreach (var u in Azul)
-            {
-                 if(u.getLife()>0){
-                    azulVivo=true;
-                    break;
-                }
+            if(AzulLose.Count>0){
+                azulVivo=true;
+            }else if(AzulLose.Count ==0){
+                winner= "Rojo";
             }
             return rojoVivo && azulVivo;
         }
@@ -80,6 +83,7 @@ public class Programa{
         protected string team;
         private int life=20;
         private int attack=0;
+        protected string clase;
 
         public Unit (int attack){
             this.attack=attack;
@@ -103,30 +107,24 @@ public class Programa{
         public void setLife(int newLife){
             this.life=newLife;
         }
+        public string getClass(){
+            return clase;
+        }
     }
 
     public class Aldeano : Unit
     {
         public Aldeano(String team): base(0){
             base.team = team;
+            base.clase="Aldeano";
         }
-
-        public string getClass()
-        {
-            return "Aldeano";
-        }
-        
     }
 
     public class Guerrero: Unit
     {
         public Guerrero(String team): base(10){
             base.team = team;
-        }
-
-        public string getClass()
-        {
-            return "Guerrero";
+            base.clase="Guerrero";
         }
         
     }
@@ -135,11 +133,7 @@ public class Programa{
     {
         public Arquero(String team): base(5){
             base.team = team;
-        }
-
-        public string getClass()
-        {
-            return "Arquero";
+            base.clase="Arquero";
         }
         
     }
