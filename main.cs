@@ -24,19 +24,54 @@ public class Programa{
         Azul.Add(new Aldeano("Azul"));
         Azul.Add(new Guerrero("Azul"));
         Azul.Add(new Arquero("Azul"));
-        while(true)/*Aqui se comprobaria si algun equipo ha ganado, comprobando si alguna unidad tiene mas de 0 de vida*/
+        while(checkAlive())
         {
+            // En el while se comprueba si uno de los equipos tiene a todos muertos
             //Se elige aleatoriamente quien empieza primero Rojo=0, Azul=1
             string turno=rand.Next(2)==0 ? Turno(Rojo, Azul) : Turno(Azul, Rojo);
             Console.WriteLine(turno);
-            break;//Break temporal ya que no tenemos la condicion de terminar batalla
         }
 
         string Turno(List<Unit> atacante, List<Unit> defensor){
-            // Aqui Se elegiria al azar una unidad que ataca y la unidad objetivo
-            // Si la unidad que ataca esta muerta se terminaria el turno
-            // Si la unidad que que es atacada esta muerta se eligiria otra unidad
-            return "Atacante x ataca a defensor y";
+            //Seleccionamos la unidad atacante
+            int unidadAtacante= rand.Next(atacante.Count);
+            if(atacante[unidadAtacante].getLife()<=0){
+                return "Lo siento los muertos no pueden atacar, no tienes un nigromante";
+            }
+            // Aqui generamos una lista de los defensores vivos porque siempre va a atacar a un vivo
+            // La solucion del nombre del equipo
+            List<Unit> defensoresVivos = new List<Unit>();
+            foreach (Unit u in defensor)
+            {
+                if(u.getLife()>0)
+                {
+                    defensoresVivos.Add(u);
+                }
+            }
+            // Seleccionamos la unidad que va a ser atacada
+            int unidadDefensora= rand.Next(defensoresVivos.Count);
+            defensoresVivos[unidadDefensora].Hit(atacante[unidadAtacante]);
+            //Pendiente cambiar la estructura de la Unit para que se le asigne el equipo en el constructor
+            return "Atacante del equipo ¿? y reduce la vida del defensor en  "+atacante[unidadAtacante].getAttack()+" de vida y el defensor del equipo ¿? se queda con "+defensoresVivos[unidadDefensora].getLife()+" de vida";
+        }
+        bool checkAlive(){
+            bool rojoVivo = false;
+            bool azulVivo = false;
+            foreach (var u in Rojo)
+            {
+                if(u.getLife()>0){
+                    rojoVivo=true;
+                    break;
+                }
+            }
+            foreach (var u in Azul)
+            {
+                 if(u.getLife()>0){
+                    azulVivo=true;
+                    break;
+                }
+            }
+            return rojoVivo && azulVivo;
         }
         
     }
@@ -50,9 +85,9 @@ public class Programa{
             this.attack=attack;
         }
 
-        public void Hit(Unit defensor){
-            int newLife= defensor.getLife()- this.getAttack();
-            defensor.setLife(newLife);
+        public void Hit(Unit atacante){
+            int newLife= this.getLife()- atacante.getAttack();
+            this.setLife(newLife);
         }
 
         public string getTeam(){
