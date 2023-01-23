@@ -16,14 +16,14 @@ public class Programa{
         var rand = new Random();
         List<Unit> Rojo = new List<Unit>();
         List<Unit> Azul = new List<Unit>();
-        Rojo.Add(new Aldeano());
-        Rojo.Add(new Aldeano());
-        Rojo.Add(new Guerrero());
-        Rojo.Add(new Arquero());
-        Azul.Add(new Aldeano());
-        Azul.Add(new Aldeano());
-        Azul.Add(new Guerrero());
-        Azul.Add(new Arquero());
+        Rojo.Add(new Aldeano("Rojo"));
+        Rojo.Add(new Aldeano("Rojo"));
+        Rojo.Add(new Guerrero("Rojo"));
+        Rojo.Add(new Arquero("Rojo"));
+        Azul.Add(new Aldeano("Azul"));
+        Azul.Add(new Aldeano("Azul"));
+        Azul.Add(new Guerrero("Azul"));
+        Azul.Add(new Arquero("Azul"));
         while(checkAlive())
         {
             // En el while se comprueba si uno de los equipos tiene a todos muertos
@@ -77,6 +77,7 @@ public class Programa{
     }
     public abstract class Unit
     {
+        protected string team;
         private int life=20;
         private int attack=0;
 
@@ -89,6 +90,10 @@ public class Programa{
             this.setLife(newLife);
         }
 
+        public string getTeam(){
+            return team;
+        }
+
         public int getAttack(){
             return attack;
         }
@@ -98,24 +103,44 @@ public class Programa{
         public void setLife(int newLife){
             this.life=newLife;
         }
-
     }
 
     public class Aldeano : Unit
     {
-        public Aldeano(): base(0){}
+        public Aldeano(String team): base(0){
+            base.team = team;
+        }
+
+        public string getClass()
+        {
+            return "Aldeano";
+        }
         
     }
 
     public class Guerrero: Unit
     {
-        public Guerrero(): base(10){}
+        public Guerrero(String team): base(10){
+            base.team = team;
+        }
+
+        public string getClass()
+        {
+            return "Guerrero";
+        }
         
     }
 
     public class Arquero: Unit
     {
-        public Arquero(): base(5){}
+        public Arquero(String team): base(5){
+            base.team = team;
+        }
+
+        public string getClass()
+        {
+            return "Arquero";
+        }
         
     }
 }
