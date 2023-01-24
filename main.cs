@@ -58,6 +58,7 @@ public class Programa{
             defensor[unidadDefensora].Hit(atacante[unidadAtacante]);
             // Creamos el texto del turno para que no de conflictos al quitar a la unidad en caso de que se muera
             string textoTurno=atacante[unidadAtacante].getCategory()+ " del equipo "+atacante[unidadAtacante].getTeam()+" reduce la vida del "+defensor[unidadDefensora].getCategory()+" del equipo "+defensor[unidadDefensora].getTeam()+" en "+atacante[unidadAtacante].getAttack()+" y este se queda con "+defensor[unidadDefensora].getLife()+" de vida\n";
+            textoTurno+=atacante[unidadAtacante].getSprite();
             // Si esta muerto lo quitamos de la lista auxiliar
             if(defensor[unidadDefensora].getLife()<=0){
                 defensor.Remove(defensor[unidadDefensora]);
@@ -89,6 +90,7 @@ public class Programa{
         private int life=20;
         private int attack=0;
         protected string category;
+        protected string sprite;
 
         public Unit (int attack){
             this.attack=attack;
@@ -115,6 +117,10 @@ public class Programa{
         public string getCategory(){
             return category;
         }
+        public string getSprite(){
+            string text = System.IO.File.ReadAllText(sprite);
+            return text;
+        }
     }
 
     public class Aldeano : Unit
@@ -122,6 +128,7 @@ public class Programa{
         public Aldeano(String team): base(0){
             base.team = team;
             base.category="Aldeano";
+            base.sprite="./Sprites/Aldeano";
         }
     }
 
@@ -130,6 +137,7 @@ public class Programa{
         public Guerrero(String team): base(10){
             base.team = team;
             base.category="Guerrero";
+            base.sprite="./Sprites/Guerrero";
         }
         
     }
@@ -139,6 +147,8 @@ public class Programa{
         public Arquero(String team): base(5){
             base.team = team;
             base.category="Arquero";
+            base.sprite="./Sprites/Arquero";
+
         }
         
     }
