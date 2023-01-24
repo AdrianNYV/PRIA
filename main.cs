@@ -25,14 +25,16 @@ public class Programa{
         Azul.Add(new Aldeano("Azul"));
         Azul.Add(new Guerrero("Azul"));
         Azul.Add(new Arquero("Azul"));
-        List<Unit> AzulLose= new List<Unit>();
+
+        List<Unit> AzulLose = new List<Unit>();
         foreach(Unit i in Azul){
-        AzulLose.Add(i);
+            AzulLose.Add(i);
         }
-        List<Unit> RojoLose= new List<Unit>();
+        List<Unit> RojoLose = new List<Unit>();
         foreach(Unit i in Rojo){
-        RojoLose.Add(i);
+            RojoLose.Add(i);
         }
+        
         while(checkAlive())
         {
             // En el while se comprueba si uno de los equipos tiene a todos muertos
