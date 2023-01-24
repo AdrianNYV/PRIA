@@ -59,7 +59,7 @@ public class Programa{
                 defensor.Remove(defensor[unidadDefensora]);
             }
             //Pendiente cambiar la estructura de la Unit para que se le asigne el equipo en el constructor
-            return  atacante[unidadAtacante].getClass()+ " del equipo "+atacante[unidadAtacante].getTeam()+" reduce la vida del "+defensorTmp.getClass()+" del equipo "+defensorTmp.getTeam()+" en "+atacante[unidadAtacante].getAttack()+" y este se queda con "+defensorTmp.getLife()+" de vida\n";
+            return  atacante[unidadAtacante].getCategory()+ " del equipo "+atacante[unidadAtacante].getTeam()+" reduce la vida del "+defensorTmp.getCategory()+" del equipo "+defensorTmp.getTeam()+" en "+atacante[unidadAtacante].getAttack()+" y este se queda con "+defensorTmp.getLife()+" de vida\n";
         }
         bool checkAlive(){
             bool rojoVivo = false;
@@ -83,7 +83,7 @@ public class Programa{
         protected string team;
         private int life=20;
         private int attack=0;
-        protected string clase;
+        protected string categoria;
 
         public Unit (int attack){
             this.attack=attack;
@@ -107,8 +107,8 @@ public class Programa{
         public void setLife(int newLife){
             this.life=newLife;
         }
-        public string getClass(){
-            return clase;
+        public string getCategory(){
+            return category;
         }
     }
 
@@ -116,7 +116,7 @@ public class Programa{
     {
         public Aldeano(String team): base(0){
             base.team = team;
-            base.clase="Aldeano";
+            base.category="Aldeano";
         }
     }
 
@@ -124,7 +124,7 @@ public class Programa{
     {
         public Guerrero(String team): base(10){
             base.team = team;
-            base.clase="Guerrero";
+            base.category="Guerrero";
         }
         
     }
@@ -133,7 +133,7 @@ public class Programa{
     {
         public Arquero(String team): base(5){
             base.team = team;
-            base.clase="Arquero";
+            base.category="Arquero";
         }
         
     }
