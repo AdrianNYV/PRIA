@@ -26,6 +26,7 @@ public class Programa{
         Azul.Add(new Guerrero("Azul"));
         Azul.Add(new Arquero("Azul"));
 
+        //Aqui clonamos las listas para usarlas como listas auxiliares para saber quienes estan vivos
         List<Unit> AzulLose = new List<Unit>();
         foreach(Unit i in Azul){
             AzulLose.Add(i);
@@ -34,7 +35,7 @@ public class Programa{
         foreach(Unit i in Rojo){
             RojoLose.Add(i);
         }
-        
+
         while(checkAlive())
         {
             // En el while se comprueba si uno de los equipos tiene a todos muertos
@@ -47,21 +48,21 @@ public class Programa{
         string Turno(List<Unit> atacante, List<Unit> defensor){
             //Seleccionamos la unidad atacante
             int unidadAtacante= rand.Next(atacante.Count);
+            // Si la unidad que va a atacar está muerta devolvemos el string y terminamos el turno
             if(atacante[unidadAtacante].getLife()<=0){
                 return "Lo siento los muertos no pueden atacar, no tienes un nigromante\n";
             }
-            // Aqui generamos una lista de los defensores vivos porque siempre va a atacar a un vivo
-            // La solucion del nombre del equipo
-           
             // Seleccionamos la unidad que va a ser atacada
             int unidadDefensora= rand.Next(defensor.Count);
+            //La unidad es atacada
             defensor[unidadDefensora].Hit(atacante[unidadAtacante]);
-            Unit defensorTmp= defensor[unidadDefensora];
+            // Creamos el texto del turno para que no de conflictos al quitar a la unidad en caso de que se muera
+            string textoTurno=atacante[unidadAtacante].getCategory()+ " del equipo "+atacante[unidadAtacante].getTeam()+" reduce la vida del "+defensor[unidadDefensora].getCategory()+" del equipo "+defensor[unidadDefensora].getTeam()+" en "+atacante[unidadAtacante].getAttack()+" y este se queda con "+defensor[unidadDefensora].getLife()+" de vida\n";
+            // Si esta muerto lo quitamos de la lista auxiliar
             if(defensor[unidadDefensora].getLife()<=0){
                 defensor.Remove(defensor[unidadDefensora]);
             }
-            //Pendiente cambiar la estructura de la Unit para que se le asigne el equipo en el constructor
-            return  atacante[unidadAtacante].getCategory()+ " del equipo "+atacante[unidadAtacante].getTeam()+" reduce la vida del "+defensorTmp.getCategory()+" del equipo "+defensorTmp.getTeam()+" en "+atacante[unidadAtacante].getAttack()+" y este se queda con "+defensorTmp.getLife()+" de vida\n";
+            return textoTurno;
         }
         bool checkAlive(){
             bool rojoVivo = false;
@@ -69,11 +70,13 @@ public class Programa{
             if(RojoLose.Count>0){
                 rojoVivo=true;
             }else if(RojoLose.Count ==0){
+                // Si todos los del equipo Rojo estan muertos damos la victoria al equipo Azul
                 winner= "Azul";
             }
             if(AzulLose.Count>0){
                 azulVivo=true;
             }else if(AzulLose.Count ==0){
+                // Si todos los del equipo Azul estan muertos damos la victoria al equipo Rojo
                 winner= "Rojo";
             }
             return rojoVivo && azulVivo;
@@ -85,7 +88,7 @@ public class Programa{
         protected string team;
         private int life=20;
         private int attack=0;
-        protected string categoria;
+        protected string category;
 
         public Unit (int attack){
             this.attack=attack;
